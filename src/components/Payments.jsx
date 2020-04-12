@@ -6,32 +6,34 @@ function pvp(p, r, t) {
     )
 }
 
-function int(payment, p, i) {
+function int(payment, p, r) {
     return (
-        payment - (p * (i / 12))
+        (p * ((r / 12) / 100))
     )
 }
 
 export default function Payments({borrowDate, startDate, principal, time, interest}) {
     let schedule = [];
-    const payment = pvp(principal, interest, time);
-    const mInterest = int(payment, principal, interest);
 
-    let tPayment = 0;
-    let tPrinc = 0;
+    const payment = pvp(principal, interest, time);
+
+    let tPrinc = principal;
     let tInt = 0;
 
     const mPayment = () => {
         for ( let i = 0; i < time; i++ ) {
+
             let object = {
-                remPrinc: 200,
-                paidInt: 500
+                remPrinc: principal - (principal - tPrinc),
+                paidInt: tInt,
+                currentInt: int(payment, tPrinc, interest),
+                monthsRemaining: time - i - 1
             }
+
+            tPrinc -= payment - object.currentInt;
+            tInt += object.currentInt;
             schedule = [...schedule, object];
-            console.log("test");
         }
-        console.log(schedule[5])
-        return schedule[0].remPrinc;
     }
 
     return (
@@ -44,7 +46,13 @@ export default function Payments({borrowDate, startDate, principal, time, intere
             }
             {
             schedule.map((item, index) => (
-                <div>{schedule[index].paidInt}</div>
+                <div>
+                    <div>Beginning Principal: ${schedule[index].remPrinc}</div>
+                    <div>Interest Paid Prior: ${schedule[index].paidInt}</div>
+                    <div>Interest Paid This Month: ${schedule[index].currentInt}</div>
+                    <div>Payments Remaining: {schedule[index].monthsRemaining}</div>
+                    <br></br>
+                </div>
             ))
             }</div>
         </div>
