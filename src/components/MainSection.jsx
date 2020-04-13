@@ -10,6 +10,19 @@ export default class MainSection extends Component {
         interest: 5
     }
 
+    handleChange = e => {
+        this.setState({
+            principal: e.target.value
+        })
+    }
+    
+    handleSubmit = e => {
+        e.preventDefault();
+        this.setState({
+            principal: e.target.value
+        })
+    }
+
     render() {
         const { borrowDate, startDate, principal, time, interest } = this.state;
 
@@ -17,7 +30,12 @@ export default class MainSection extends Component {
             <div>
                 <div>Main</div>
                 <div>Settings</div>
-                <div>Inputs</div>
+                <div>
+                    <form onSubmit={this.handleSubmit}>
+                        <input type="text" onChange={this.handleChange} placholder="Amount Borrowed" />
+                        <button type="submit">Enter</button>
+                    </form>
+                </div>
                 <Payments
                 borrowDate={borrowDate}
                 startDate={startDate}

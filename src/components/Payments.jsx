@@ -38,15 +38,16 @@ export default function Payments({borrowDate, startDate, principal, time, intere
 
     return (
         <div>
-            <div>Total Payment: ${pvp(principal, interest, time)}
-            </div>  
-            <div>{time}</div>
+            <div>Monthly Payment: ${pvp(principal, interest, time)}
+            </div>
+            <br></br>
             <div>{
             mPayment()
             }
             {
             schedule.map((item, index) => (
                 <div>
+                    <div>Month {index + 1}</div>
                     <div>Beginning Principal: ${schedule[index].remPrinc}</div>
                     <div>Interest Paid Prior: ${schedule[index].paidInt}</div>
                     <div>Interest Paid This Month: ${schedule[index].currentInt}</div>
