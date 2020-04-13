@@ -11,14 +11,14 @@ export default class MainSection extends Component {
         interest: 5
     }
 
-    handleChange = e => {
+    handleChange = (e, item) => {
 
         this.setState({
             input: e.target.value
         })
     }
     
-    handleSubmit = e => {
+    handleSubmit = (e, item) => {
         e.preventDefault();
         this.setState({
             principal: this.state.input
@@ -33,11 +33,16 @@ export default class MainSection extends Component {
                 <div>Main</div>
                 <div>Settings</div>
                 <div>
+                    <label>Inputs</label>
                     <form onSubmit={this.handleSubmit}>
-                        <input type="text" onChange={this.handleChange} placholder="Amount Borrowed" />
+                        <input type="text" onChange={this.handleChange} placeholder="Enter Amount" />
+                        <input type="text" onChange={this.handleChange} placeholder="Enter Interest" />
+                        <input type="text" onChange={this.handleChange} placeholder="Enter Time" />
+                        <input type="text" onChange={this.handleChange} placeholder="Enter Amount" />
                         <button type="submit">Enter</button>
                     </form>
                 </div>
+
                 <Payments
                 borrowDate={borrowDate}
                 startDate={startDate}
