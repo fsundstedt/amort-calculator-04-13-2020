@@ -3,6 +3,7 @@ import Payments from './Payments';
 
 export default class MainSection extends Component {
     state = {
+        input: 0,
         borrowDate: 0,
         startDate: 1,
         principal: 12000,
@@ -11,15 +12,16 @@ export default class MainSection extends Component {
     }
 
     handleChange = e => {
+
         this.setState({
-            principal: e.target.value
+            input: e.target.value
         })
     }
     
     handleSubmit = e => {
         e.preventDefault();
         this.setState({
-            principal: e.target.value
+            principal: this.state.input
         })
     }
 
