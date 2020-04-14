@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import Payments from './Payments';
+import DefaultScreen from './DefaultScreen';
+import { Section, Button } from './Styles.js'
 
 export default class MainSection extends Component {
     state = {
-        input: 0,
+        defaultComp: true,
+        inputPrincipal: 0,
+        inputTime: 0,
+        inputInterest: 0,
         borrowDate: 0,
         startDate: 1,
         principal: 12000,
@@ -12,43 +17,63 @@ export default class MainSection extends Component {
     }
 
     handleChange = (e) => {
-
         this.setState({
-            principal: e.target.value
+            [e.target.name]: e.target.value
         })
     }
     
-    handleSubmit = (e, item) => {
+    handleSubmit = (e) => {
         e.preventDefault();
         this.setState({
-            ...state,
-            {e.target.name}: this.state.input
+            defaultComp: false,
+            inputPrincipal: this.state.principal,
+            inputTime: this.state.time,
+            inputInterest: this.state.interest
         })
     }
 
     render() {
-        const { borrowDate, startDate, principal, time, interest } = this.state;
+        const { defaultComp, borrowDate, startDate, inputPrincipal, inputTime, inputInterest } = this.state;
+
+        const ifDefault = () => {
+            if (defaultComp === true) {
+                return (
+                    <DefaultScreen />
+                )
+            } else {
+                return (
+                    <>
+                        <div>
+                            Amount Borrowed: ${inputPrincipal}; Interest Rate: {inputInterest}%; Time (months): {inputTime}
+                        </div>
+                        <Payments
+                        borrowDate={borrowDate}
+                        startDate={startDate}
+                        principal={inputPrincipal}
+                        time={inputTime}
+                        interest={inputInterest}/>
+                    </>
+                )
+            }
+        }
 
         return (
             <div>
-                <div>Main</div>
-                <div>Settings</div>
                 <div>
+                    <Section>Amortization Table</Section>
                     <label>Inputs</label>
                     <form onSubmit={this.handleSubmit}>
                         <input type="text" onChange={this.handleChange} name="principal" placeholder="Enter Amount" />
                         <input type="text" onChange={this.handleChange} name="interest" placeholder="Enter Interest" />
                         <input type="text" onChange={this.handleChange} name="time" placeholder="Enter Time" />
-                        <button type="submit">Enter</button>
+                        <br></br>
+                        <br></br>
+                        <Button type="submit">Enter</Button>
                     </form>
                 </div>
-
-                <Payments
-                borrowDate={borrowDate}
-                startDate={startDate}
-                principal={principal}
-                time={time}
-                interest={interest}/>
+                <div>
+                {ifDefault()}
+                </div>
             </div>
         )
     }
