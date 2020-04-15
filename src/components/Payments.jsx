@@ -1,4 +1,5 @@
 import React from 'react';
+import { Payment, Summary } from './Styles.js'
 
 function pvp(p, r, t) {
     return (
@@ -10,6 +11,22 @@ function int(payment, p, r) {
     return (
         (p * ((r / 12) / 100))
     )
+}
+
+function addCommas(nStr){
+    nStr += '';
+    var x = nStr.split('.');
+    var x1 = x[0];
+    var x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+     x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+   }
+
+function checkNumber(number) {
+    return number
 }
 
 export default function Payments({borrowDate, startDate, principal, time, interest}) {
@@ -38,22 +55,42 @@ export default function Payments({borrowDate, startDate, principal, time, intere
 
     return (
         <div>
-            <div>Monthly Payment: ${pvp(principal, interest, time)}
-            </div>
-            <br></br>
-            <div>{
+            <Summary>
+            {
             mPayment()
             }
+                <div>Summary:
+                    <div>
+                        Amount Borrowed: ${addCommas(principal)}
+                    </div>
+                    <div>
+                        Interest Rate: {interest}%
+                    </div>
+                    <div>
+                        Term (months): {checkNumber(time)}
+                    </div>
+                    <div>
+                        Total Interest Cost: ${addCommas((checkNumber(schedule[time-1].paidInt) + checkNumber(schedule[time-1].currentInt)).toFixed(2))}
+                    </div>
+                </div>
+                <div>
+                    Monthly Payment: ${addCommas(pvp(principal, interest, time).toFixed(2))}
+                </div>
+            </Summary>
+            <br></br>
+            <div>
             {
             schedule.map((item, index) => (
-                <div>
-                    <div>Month {index + 1}</div>
-                    <div>Beginning Principal: ${schedule[index].remPrinc}</div>
-                    <div>Interest Paid Prior: ${schedule[index].paidInt}</div>
-                    <div>Interest Paid This Month: ${schedule[index].currentInt}</div>
-                    <div>Payments Remaining: {schedule[index].monthsRemaining}</div>
+                <>
+                    <Payment>
+                            <div>Month {index + 1}</div>
+                            <div>Beginning Principal: ${addCommas(schedule[index].remPrinc.toFixed(2))}</div>
+                            <div>Interest Paid Prior: ${addCommas(schedule[index].paidInt.toFixed(2))}</div>
+                            <div>Interest Paid This Month: ${addCommas(schedule[index].currentInt.toFixed(2))}</div>
+                            <div>Payments Remaining: {schedule[index].monthsRemaining}</div>
+                    </Payment>
                     <br></br>
-                </div>
+                </>
             ))
             }</div>
         </div>

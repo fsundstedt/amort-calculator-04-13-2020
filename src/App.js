@@ -1,12 +1,14 @@
 import React from 'react';
 import MainSection from './components/MainSection'
-import { Main } from './components/Styles.js'
+import { Background, Main } from './components/Styles.js'
 
 function App() {
   return (
-    <Main>
-      <MainSection />
-    </Main>
+    <Background>
+      <Main>
+        <MainSection />
+      </Main>
+    </Background>
   );
 }
 

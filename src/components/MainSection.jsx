@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Payments from './Payments';
 import DefaultScreen from './DefaultScreen';
-import { Section, Button } from './Styles.js'
+import { Title, Button, Inputs, Input, Inputbox, Border } from './Styles.js'
 
 export default class MainSection extends Component {
     state = {
@@ -10,10 +10,16 @@ export default class MainSection extends Component {
         inputTime: 0,
         inputInterest: 0,
         borrowDate: 0,
-        startDate: 1,
-        principal: 12000,
-        time: 80,
-        interest: 5
+        startDate: 0,
+        principal: 0,
+        time: 0,
+        interest: 0
+    }
+
+    reset = () => {
+        this.setState({
+            defaultComp: true,
+        })
     }
 
     handleChange = (e) => {
@@ -40,37 +46,40 @@ export default class MainSection extends Component {
                 return (
                     <DefaultScreen />
                 )
-            } else {
+                } else {
                 return (
-                    <>
-                        <div>
-                            Amount Borrowed: ${inputPrincipal}; Interest Rate: {inputInterest}%; Time (months): {inputTime}
-                        </div>
+                    <Border>
                         <Payments
                         borrowDate={borrowDate}
                         startDate={startDate}
                         principal={inputPrincipal}
                         time={inputTime}
                         interest={inputInterest}/>
-                    </>
+                    </Border>
                 )
             }
         }
 
         return (
             <div>
-                <div>
-                    <Section>Amortization Table</Section>
-                    <label>Inputs</label>
+                <Inputbox>
+                    <Title>Amortization Calculator</Title>
                     <form onSubmit={this.handleSubmit}>
-                        <input type="text" onChange={this.handleChange} name="principal" placeholder="Enter Amount" />
-                        <input type="text" onChange={this.handleChange} name="interest" placeholder="Enter Interest" />
-                        <input type="text" onChange={this.handleChange} name="time" placeholder="Enter Time" />
-                        <br></br>
-                        <br></br>
-                        <Button type="submit">Enter</Button>
+                        <Inputs><div>Principal:</div>
+                            <Input type="text" onChange={this.handleChange} name="principal" placeholder="Enter Amount" />
+                        </Inputs>
+                        <Inputs><div>Interest:</div>
+                            <Input type="text" onChange={this.handleChange} name="interest" placeholder="Enter Rate" />
+                        </Inputs>
+                        <Inputs><div>Term:</div>
+                            <Input type="text" onChange={this.handleChange} name="time" placeholder="Enter Months" />
+                        </Inputs>
+                        <div>
+                            <Button type="submit">Show Amortization Schedule</Button>
+                        </div>
                     </form>
-                </div>
+                </Inputbox>
+                <br></br>
                 <div>
                 {ifDefault()}
                 </div>

@@ -1,14 +1,15 @@
 import React from 'react';
+import { DefaultStyle } from './Styles.js';
 
 export default function DefaultScreen () {
     return (
-        <>
-            <br></br>
-            <div>Enter the following info:
-                <li>Loan Principal (the amount borrowed)</li>
-                <li>Interest Rate (as an integer)</li>
-                <li>Term (in months)</li>
-            </div>
-        </>
+        <div>
+            <DefaultStyle>
+                <div>Enter the following info:</div>
+                <div>- Loan Principal (the amount borrowed)</div>
+                <div>- Interest Rate (as an integer)</div>
+                <div>- Term (in months)</div>
+            </DefaultStyle>
+        </div>
     )
 }
