@@ -7,9 +7,11 @@ function pvp(p, r, t) {
     )
 }
 
-function int(p, r) {
+function int(principal, rate) {
+    console.log(principal)
+    console.log(rate)
     return (
-        (p * ((r / 12) / 100))
+        (principal * ((rate / 12) / 100))
     )
 }
 
@@ -25,10 +27,6 @@ function addCommas(nStr){
     return x1 + x2;
    }
 
-function checkNumber(number) {
-    return number
-}
-
 export default function Payments({borrowDate, startDate, principal, time, interest}) {
     let schedule = [];
 
@@ -43,7 +41,7 @@ export default function Payments({borrowDate, startDate, principal, time, intere
             let object = {
                 remPrinc: principal - (principal - tPrinc),
                 paidInt: tInt,
-                currentInt: int(payment, tPrinc, interest),
+                currentInt: int(tPrinc, interest),
                 monthsRemaining: time - i - 1
             }
 
@@ -67,10 +65,10 @@ export default function Payments({borrowDate, startDate, principal, time, intere
                         Interest Rate: {interest}%
                     </div>
                     <div>
-                        Term (months): {checkNumber(time)}
+                        Term (months): {time}
                     </div>
                     <div>
-                        Total Interest Cost: ${addCommas((checkNumber(schedule[time-1].paidInt) + checkNumber(schedule[time-1].currentInt)).toFixed(2))}
+                        Total Interest Cost: ${addCommas((schedule[time-1].paidInt + schedule[time-1].currentInt).toFixed(2))}
                     </div>
                 </div>
                 <div>

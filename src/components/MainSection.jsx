@@ -66,13 +66,13 @@ export default class MainSection extends Component {
                     <Title>Amortization Calculator</Title>
                     <form onSubmit={this.handleSubmit}>
                         <Inputs><div>Principal:</div>
-                            <Input type="text" onChange={this.handleChange} name="principal" placeholder="Enter Amount" />
+                            <Input type="number" onChange={this.handleChange} name="principal" placeholder="Enter Amount" required/>
                         </Inputs>
                         <Inputs><div>Interest:</div>
-                            <Input type="text" onChange={this.handleChange} name="interest" placeholder="Enter Rate" />
+                            <Input type="number" onChange={this.handleChange} name="interest" placeholder="Enter Rate" required/>
                         </Inputs>
                         <Inputs><div>Term:</div>
-                            <Input type="text" onChange={this.handleChange} name="time" placeholder="Enter Months" />
+                            <Input type="number" onChange={this.handleChange} name="time" placeholder="Enter Months" required/>
                         </Inputs>
                         <div>
                             <Button type="submit">Show Amortization Schedule</Button>

@@ -78,7 +78,7 @@ export const Inputs = styled.div`
 `;
 
 export const Input = styled.input`
-  max-width: 90px;
+  max-width: 100px;
   margin-left: 5%;
   background-color: none;
   border-style: none;

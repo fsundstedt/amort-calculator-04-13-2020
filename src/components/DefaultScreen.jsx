@@ -7,7 +7,7 @@ export default function DefaultScreen () {
             <DefaultStyle>
                 <div>Enter the following info:</div>
                 <div>- Loan Principal (the amount borrowed)</div>
-                <div>- Interest Rate (as an integer)</div>
+                <div>- Interest Rate Percentage</div>
                 <div>- Term (in months)</div>
             </DefaultStyle>
         </div>
