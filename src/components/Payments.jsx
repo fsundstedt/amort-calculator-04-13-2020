@@ -7,7 +7,7 @@ function pvp(p, r, t) {
     )
 }
 
-function int(payment, p, r) {
+function int(p, r) {
     return (
         (p * ((r / 12) / 100))
     )

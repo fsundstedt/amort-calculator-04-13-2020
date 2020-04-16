@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const Background = styled.div`
   display: flexbox;
   justify-content: center;
-  background-color: white;
+  margin: 0px;
+  background-color: rgba(0,0,0,0.2);
   min-height: 667px;
 `;
 
@@ -15,6 +16,7 @@ export const Main = styled.div`
   margin: 2%;
   padding: 2%;
   border-radius: 20px;
+  font-family: "Lato",sans-serif;
   justify-content: center;
 `;
 
@@ -39,7 +41,6 @@ export const Button = styled.button`
     background-color: rgba(0,0,0,0.2);
     border-radius: 5px;
     border: none;
-    font-family: "Lato",sans-serif;
     &:hover{
       background-color: #b4cae3;
       border: 1px solid;
