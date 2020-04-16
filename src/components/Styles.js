@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Background = styled.div`
+  display: flexbox;
+  justify-content: center;
   background-color: white;
   min-height: 667px;
 `;
@@ -9,9 +11,10 @@ export const Main = styled.div`
   display: flexbox;
   background-color: rgba(0,10,255,0.5);
   min-height: 667px;
+  max-width: 375px;
   margin: 2%;
-  border: 1px solid;
-  border-radius: 5px;
+  padding: 2%;
+  border-radius: 20px;
   justify-content: center;
 `;
 
@@ -53,7 +56,6 @@ export const DefaultStyle = styled.div`
   margin-right: 0%;
   padding: 2%;
   font-size: 0.8rem;
-  border: 1px solid;
   border-radius: 5px;
 `;
 
@@ -65,7 +67,6 @@ export const Inputbox = styled.div`
   margin-top: 4%;
   margin-left: 0%;
   margin-right: 0%;
-  border: 1px solid;
   border-radius: 5px;
   padding: 2%;
 `;
@@ -98,7 +99,6 @@ export const Payment = styled.div`
 
 export const Border = styled.div`
   margin: 2%;
-  border: 1px solid;
   border-radius: 5px;
   background-color: white;
 `
