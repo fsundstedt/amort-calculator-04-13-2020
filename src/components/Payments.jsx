@@ -85,6 +85,7 @@ export default function Payments({borrowDate, startDate, principal, time, intere
                             <div>Beginning Principal: ${addCommas(schedule[index].remPrinc.toFixed(2))}</div>
                             <div>Interest Paid Prior: ${addCommas(schedule[index].paidInt.toFixed(2))}</div>
                             <div>Interest Paid This Month: ${addCommas(schedule[index].currentInt.toFixed(2))}</div>
+                            <div>Interest % of Payment: {((schedule[index].currentInt/payment)*100).toFixed(2)}%</div>
                             <div>Payments Remaining: {schedule[index].monthsRemaining}</div>
                     </Payment>
                     <br></br>
