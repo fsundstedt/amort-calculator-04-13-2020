@@ -90,6 +90,7 @@ export const Summary = styled.div`
   text-align: center;
   font-weight: bold;
   margin: 2%;
+  padding: 2%;
   background: #fff;
   background-color: white;
 `;
@@ -102,4 +103,8 @@ export const Border = styled.div`
   margin: 2%;
   border-radius: 5px;
   background-color: white;
+`
+
+export const Month = styled.div`
+  font-weight: bold;
 `

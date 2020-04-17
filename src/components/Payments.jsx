@@ -1,5 +1,5 @@
 import React from 'react';
-import { Payment, Summary } from './Styles.js'
+import { Payment, Summary, Month } from './Styles.js'
 
 function pvp(p, r, t) {
     return (
@@ -81,7 +81,7 @@ export default function Payments({borrowDate, startDate, principal, time, intere
             schedule.map((item, index) => (
                 <>
                     <Payment>
-                            <div>Month {index + 1}</div>
+                            <Month>Month {index + 1}</Month>
                             <div>Beginning Principal: ${addCommas(schedule[index].remPrinc.toFixed(2))}</div>
                             <div>Interest Paid Prior: ${addCommas(schedule[index].paidInt.toFixed(2))}</div>
                             <div>Interest Paid This Month: ${addCommas(schedule[index].currentInt.toFixed(2))}</div>
