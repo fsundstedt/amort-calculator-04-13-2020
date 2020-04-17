@@ -68,6 +68,9 @@ export default function Payments({borrowDate, startDate, principal, time, intere
                         Term (months): {time}
                     </div>
                     <div>
+                        Effective Interest Rate: {(((schedule[time-1].paidInt + schedule[time-1].currentInt)/principal) * 100).toFixed(2)}%
+                    </div>
+                    <div>
                         Total Interest Cost: ${addCommas((schedule[time-1].paidInt + schedule[time-1].currentInt).toFixed(2))}
                     </div>
                 </div>
